@@ -64,3 +64,7 @@ if __name__ == "__main__":
 	# print(OUTPUT_FILE)
 	# merge()
 	run()
+
+# TODO : top distributors, number and percentage of not activated yet and cross check with sold date,
+# TODO : percentage of stcok in channel not registered yet
+# TODO : percentage and number of indeviduals
