@@ -58,9 +58,20 @@ def number_of_stock_in_channel():
 	pass
 
 
-def corporate_modems_as_individual():
+def corporate_modems_as_individual(df):
 	"""
 	number of corporate modems sold as individual
 	:return: number of percentage of individual modems
 	"""
-	pass
+
+	df_corporate = df.groupby(['CUSTOMER_NAME']).apply(lambda x: x == 'B')['PROFILE_TYPE_V']\
+		.reset_index(name='IS_CORPORATE')\
+		.groupby('CUSTOMER_NAME')['IS_CORPORATE'].sum().reset_index(name='INDIVIDUAL_COUNT')
+
+	df_individual = df.groupby(['CUSTOMER_NAME']).apply(lambda x: x == 'I')['PROFILE_TYPE_V'] \
+		.reset_index(name='IS_INDIVIDUAL') \
+		.groupby('CUSTOMER_NAME')['IS_INDIVIDUAL'].sum().reset_index(name='CORPORATE_COUNT')
+
+	merged_df = pd.merge(df_corporate, df_individual, left_on='CUSTOMER_NAME', right_on='CUSTOMER_NAME', how='inner')
+
+	return merged_df

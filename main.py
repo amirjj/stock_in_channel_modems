@@ -1,7 +1,8 @@
 from config import OUTPUT_DIR, INPUT_DIR, OUTPUT_FILE, INPUT_FILE
 from utils import *
 from DA import top_assigned_modem_distributor, \
-	not_registered_modems
+	not_registered_modems, \
+	corporate_modems_as_individual
 
 
 def merge_modem_report():
@@ -40,9 +41,14 @@ def run():
 
 	#################### Not registered count and percentage ############
 
-	not_registered_list = not_registered_modems(df)
-	output_file = OUTPUT_DIR.joinpath('not_registered_modems.csv')
-	save_df_to_csv(not_registered_list, ['CUSTOMER_NAME', 'NOT_REGISTERED_PERCENTAGE', 'MODEM_COUNT'], output_file)
+	# not_registered_list = not_registered_modems(df)
+	# output_file = OUTPUT_DIR.joinpath('not_registered_modems.csv')
+	# save_df_to_csv(not_registered_list, ['CUSTOMER_NAME', 'NOT_REGISTERED_PERCENTAGE', 'MODEM_COUNT'], output_file)
+	#################### Corporate indevidual report ####################
+
+	# output_file = OUTPUT_DIR.joinpath('corporate_indevidual_report.csv')
+	# corporate_individual_report = corporate_modems_as_individual(df)
+	# save_df_to_csv(corporate_individual_report, ['CUSTOMER_NAME', 'INDIVIDUAL_COUNT', 'CORPORATE_COUNT'], output_file)
 
 
 
