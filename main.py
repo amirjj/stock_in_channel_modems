@@ -2,7 +2,8 @@ from config import OUTPUT_DIR, INPUT_DIR, OUTPUT_FILE, INPUT_FILE
 from utils import *
 from DA import top_assigned_modem_distributor, \
 	not_registered_modems, \
-	corporate_modems_as_individual
+	corporate_modems_as_individual, \
+	not_activated_for_n_years
 
 
 def merge_modem_report():
@@ -49,12 +50,8 @@ def run():
 	# output_file = OUTPUT_DIR.joinpath('corporate_indevidual_report.csv')
 	# corporate_individual_report = corporate_modems_as_individual(df)
 	# save_df_to_csv(corporate_individual_report, ['CUSTOMER_NAME', 'INDIVIDUAL_COUNT', 'CORPORATE_COUNT'], output_file)
-
+	not_activated_for_n_years(df)
 
 
 if __name__ == "__main__":
 	run()
-
-# TODO : top distributors, number and percentage of not activated yet and cross check with sold date,
-# TODO : percentage of stcok in channel not registered yet
-# TODO : percentage and number of indeviduals

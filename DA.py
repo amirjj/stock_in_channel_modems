@@ -1,4 +1,5 @@
 import pandas as pd
+import datetime
 
 
 def top_assigned_modem_distributor(df, top_n=10):
@@ -29,13 +30,20 @@ def not_registered_modems(df):
 	return merged_df
 
 
-def not_activated_for_n_years(sold_for_n_year=2):
+def not_activated_for_n_years(df, sold_for_n_year=2):
 	"""
 	difference between sold_date and now for not registered modems
 	:param sold_for_n_year: not sold after n year
 	:return: list of modems
 	"""
-	pass
+	# print(df.dtypes)
+	df['DATE_CREATED'] = pd.to_datetime(df['DATE_CREATED'])
+
+	# today = datetime.datetime.now()
+	# print(df[df['CUSTOMER_NAME'].eq('AZARAN')]['DATE_CREATED'])
+	# print(today - df[df['CUSTOMER_NAME'].eq('AZARAN')]['DATE_CREATED'])
+	# print(df.loc['2020-01-01':'2020-01-02'])
+	print(df[df['DATE_CREATED'] > '2023-04-08'].count())
 
 
 def stock_in_channel_count():
