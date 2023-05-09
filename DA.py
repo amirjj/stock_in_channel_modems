@@ -38,32 +38,17 @@ def not_activated_for_n_years(df, sold_for_n_year=2):
 	"""
 	# print(df.dtypes)
 	df['DATE_CREATED'] = pd.to_datetime(df['DATE_CREATED'])
+	# df['SERIAL_NO'] = df['SERIAL_NO'].astype('string')
 
 	# today = datetime.datetime.now()
 	# print(df[df['CUSTOMER_NAME'].eq('AZARAN')]['DATE_CREATED'])
 	# print(today - df[df['CUSTOMER_NAME'].eq('AZARAN')]['DATE_CREATED'])
-	# print(df.loc['2020-01-01':'2020-01-02'])
-	print(df[df['DATE_CREATED'] > '2023-04-08'].count())
+	# print(df.loc['2020-01-01':'2020-01-25'])
+	older_df = df[df['DATE_CREATED'] < '2020-01-01']
 
+	not_registered_list = not_registered_modems(older_df)
 
-def stock_in_channel_count():
-	"""
-	count and percentage of not registered sold modems
-	:return: count and percentage of not registered sold modems
-	"""
-	pass
-
-
-def stock_in_channel_list():
-	"""
-	count and percentage of not registered sold modems
-	:return: list of not registered sold modems
-	"""
-	pass
-
-
-def number_of_stock_in_channel():
-	pass
+	return not_registered_list, older_df
 
 
 def corporate_modems_as_individual(df):
